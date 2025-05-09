@@ -44,3 +44,17 @@ document.querySelectorAll('img.lazy').forEach(img => {
     img.classList.add('loaded');
   });
 });
+
+window.addEventListener("load", () => {
+    document.querySelectorAll('img.lazy').forEach(img => {
+      if (img.complete) {
+        img.classList.add("loaded");
+      } else {
+        img.addEventListener("load", () => {
+          img.classList.add("loaded");
+        });
+      }
+    });
+  });
+
+
