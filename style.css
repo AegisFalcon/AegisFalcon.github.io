@@ -1,0 +1,425 @@
+@font-face {
+    font-family: "Orbitron";
+    src: url(./assets/fonts/Orbitron-Regular.ttf);
+}
+
+nav {
+  padding: 10px;
+  }
+
+body {
+  background-color: rgb(0, 0, 0);
+  }
+
+h1 {
+color: white;
+
+}
+
+  nav ul {
+    list-style: none;      /* Supprime les puces */
+    display: flex;         /* Met la liste en ligne */
+    justify-content: center; /* Centre les éléments horizontalement */
+    padding: 0;            /* Supprime le padding par défaut */
+    margin: 0;             /* Supprime le margin par défaut */
+    gap: 20px;             /* Espace entre les liens (optionnel) */
+}
+
+nav li a {
+    text-transform: uppercase;
+    text-decoration: none; /* Supprime le soulignement des liens */
+    color: white;
+    font-family: "Orbitron", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+}
+
+header {
+    padding-bottom: 20px; /* Espace entre la nav et les images */
+}
+
+a {
+  text-decoration: none; /* enlève la barre violete sur les textes */
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+/* Effet au survol */
+.gallery img {
+    width: 280px;              /* largeur fixe pour uniformité */
+    height: 280px;             /* hauteur fixe pour alignement */
+    object-fit: cover;         /* recadre l’image sans la déformer */
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: auto;
+  }
+
+ .lightbox.show {
+  display: flex;
+}
+  
+  .lightbox:target {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .lightbox-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 60px 20px;
+    max-width: 90%;
+    margin: auto;
+    box-sizing: border-box;
+  }
+  
+  .lightbox-inner img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  }
+
+.lightbox img {
+    max-width: 100%;
+    max-height: 95vh;
+    object-fit: contain;
+    border-radius: 0px;
+    overflow-y: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.lightbox iframe {
+  width: 100%;
+  height: 1265px;
+  border-radius: 10px;
+}
+/* Flèches navigation */
+.nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10%;
+    transition: background 0.3s;
+    z-index: 1001;
+    line-height: 1;
+}
+
+.nav:hover {
+    background: rgba(138, 138, 138, 0.2);
+}
+
+.prev {
+    left: 30px;
+}
+
+.next {
+    right: 30px;
+}
+
+/* Bouton de fermeture */
+.close {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+    line-height: 1;
+}
+
+.close:hover {
+    background: rgba(138, 138, 138, 0.2);
+}
+
+.description {
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    line-height: 1.4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  
+  .social-links a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .social-links img {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+  }
+
+footer {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    text-align: center;
+    padding: 10px 10px;
+    font-size: 0.9rem;
+    margin-top: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* GameCard */
+
+.game-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  max-width: 1200px;  /* limite à ~4 ou 5 images par ligne */
+  margin: 0 auto;     /* centre le conteneur */
+}
+
+.game-card img {
+  width: 250px;              /* largeur fixe pour uniformité */
+  height: 350px;             /* hauteur fixe pour alignement */
+  object-fit: cover;         /* recadre l’image sans la déformer */
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.game-card img:hover {
+  transform: scale(1.05);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.Game-Title {
+  font-size: 2rem;
+  color: rgb(255, 255, 255);             
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;      
+}
+/* Screenshot Page */
+
+.game-page-title {
+text-align: center;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.screenshot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.ig-screenshots-title-main {
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  }
+
+.ig-screenshots-h5 {
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  padding-top: 0px;
+  }
+
+.header-ig-screenshots-main {
+padding-bottom: 1px;
+padding-top: 15px;  
+}
+
+/* Effet au survol */
+.screenshot img {
+    width: 480px;              /* largeur fixe pour uniformité */
+    height: 270px;             /* hauteur fixe pour alignement */
+    object-fit: cover;         /* recadre l’image sans la déformer */
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.screenshot img:hover {
+    transform: scale(1.05);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ScreenHeader {
+  padding: 1px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+}
+
+.nav-link {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  padding: 5px 0;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;             /* colle la barre sous le texte */
+  left: 0;
+  width: 100%;
+  height: 2px;           /* hauteur de la barre */
+  background-color: white;
+  transform: scaleX(0);  /* invisible par défaut */
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);  /* visible au survol ou quand actif */
+}
+
+/* GAME LIST */
+
+.tier-list {
+  padding: 1px;
+  max-width: 800px;
+  margin: auto;
+  color: white;
+}
+
+.tier-list h2 {
+  border-bottom: 2px solid white;
+  margin-top: 1px;
+  font-size: 1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tier {
+  list-style: none;
+  padding-left: 0;
+  margin: 15px 0;
+}
+
+.tier li {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-left: 4px solid white;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+}
+
+.game-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.game-comment {
+  margin: 5px 0 0;
+  font-size: 0.95rem;
+  color: #ccc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.Title-Gamelist {
+  color: white;
+  padding: 10px;
+  padding-bottom: 1px;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.Header-Gamelist {
+padding: 1px;
+}
+
+/* About */
+
+.about-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  color: white;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  max-width: 1000px;
+  flex-wrap: wrap; /* utile pour petit écran */
+}
+
+.profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.about-text {
+  max-width: 600px;
+}
+
+.about-text h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
