@@ -36,3 +36,11 @@ document.querySelectorAll('.lightbox .nav').forEach(nav => {
     openLightbox(targetId);
   });
 });
+
+document.querySelectorAll('img.lazy').forEach(img => {
+  img.classList.add('lazy'); // au cas où
+
+  img.addEventListener('load', () => {
+    img.classList.add('loaded');
+  });
+});
