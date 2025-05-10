@@ -106,7 +106,7 @@ a {
 
 .lightbox img {
     max-width: 100%;
-    max-height: 95vh;
+    max-height: 90vh;
     object-fit: contain;
     overflow-y: auto;
 }
@@ -114,26 +114,23 @@ a {
 .lightbox iframe {
   width: 100%;
   height: 1265px;
-  border-radius: 10px;
 }
 /* Flèches navigation */
 .nav {
     position: fixed;
     top: 50%;
-    transform: translateY(-50%);
     font-size: 3rem;
     color: white;
     text-decoration: none;
-    padding:8px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10%;
-    transition: background 0.3s;
+    transition: transform 0.3s ease;
+    cursor: pointer;
     z-index: 1001;
     line-height: 1;
+    will-change: transform;
 }
 
 .nav:hover {
-    background: rgba(138, 138, 138, 0.2);
+    transform: scale(1.5);
 }
 
 .prev {
@@ -141,14 +138,14 @@ a {
 }
 
 .next {
-    right: 30px;
+    right: 45px;
 }
 
 /* Bouton de fermeture */
 .close {
     position: fixed;
     top: 20px;
-    right: 30px;
+    right: 40px;
     font-size: 2rem;
     color: white;
     text-decoration: none;
