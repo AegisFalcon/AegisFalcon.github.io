@@ -16,7 +16,7 @@ color: white;
 
 }
 
-  nav ul {
+nav ul {
     list-style: none;      /* Supprime les puces */
     display: flex;         /* Met la liste en ligne */
     justify-content: center; /* Centre les éléments horizontalement */
@@ -349,9 +349,10 @@ padding-top: 15px;
 .tier li {
   margin-bottom: 20px;
   padding: 10px;
-  border-left: 4px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 5px;
+  text-align: center;
 }
 
 .game-title {
@@ -378,6 +379,27 @@ padding-top: 15px;
 .Header-Gamelist {
 padding: 1px;
 }
+
+.store-button {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #ffffff10; /* léger blanc transparent */
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.store-button:hover {
+  background-color: white;
+  color: black;
+  transform: scale(1.05);
+}
+
 
 /* About */
 
@@ -428,5 +450,12 @@ img.lazy {
 
 img.lazy.loaded {
   opacity: 1;
+}
+
+.steam-preview img {
+  width: 299px;
+  height: 140px;
+  object-fit: cover;
+  padding-top: 20px;
 }
 
