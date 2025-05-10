@@ -47,6 +47,8 @@ a {
     justify-content: center;
     gap: 10px;
     padding: 20px;
+    max-width: 2400px;
+    margin: auto;
 }
 
 /* Effet au survol */
@@ -255,6 +257,8 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     justify-content: center;
     gap: 20px;
     padding: 20px;
+    max-width: 2800px;
+    margin: auto;
 }
 
 .ig-screenshots-title-main {
@@ -364,7 +368,7 @@ padding-top: 15px;
 }
 
 .game-comment {
-  margin: 5px 0 0;
+  margin: 30px 0 0;
   font-size: 0.95rem;
   color: #ccc;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
