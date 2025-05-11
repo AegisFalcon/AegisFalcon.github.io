@@ -74,7 +74,7 @@ a {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.945);
+    background: rgb(0, 0, 0);
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -311,7 +311,7 @@ padding-top: 15px;
   position: absolute;
   bottom: 0;             /* colle la barre sous le texte */
   left: 0;
-  width: 100%;
+  width: 99.3%;
   height: 2px;           /* hauteur de la barre */
   background-color: white;
   transform: scaleX(0);  /* invisible par défaut */
