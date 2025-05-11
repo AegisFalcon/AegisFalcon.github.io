@@ -1,3 +1,5 @@
+// Garde le scroll au même endroit après fermeture lightbox
+
 function openLightbox(targetId) {
   document.querySelectorAll('.lightbox').forEach(lb => lb.style.display = 'none');
   const target = document.querySelector(targetId);
@@ -36,6 +38,8 @@ document.querySelectorAll('.lightbox .nav').forEach(nav => {
     openLightbox(targetId);
   });
 });
+
+// Effet fade in images
 
 document.querySelectorAll('img.lazy').forEach(img => {
   img.classList.add('lazy'); // au cas où

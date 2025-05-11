@@ -443,6 +443,8 @@ padding: 1px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Effet Fade-In Image */
+
 img.lazy {
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease; /* garde l'effet hover */
