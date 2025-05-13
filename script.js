@@ -10,22 +10,37 @@ function openLightbox(targetId) {
   }
 }
 
+// Ouvre la lightbox sans empiler l'historique
 document.querySelectorAll('a[href^="#img"]').forEach(link => {
   const targetId = link.getAttribute('href');
 
   link.addEventListener('click', e => {
     e.preventDefault();
-    openLightbox(targetId);
+
+    // Ferme toutes les lightbox d’abord
+    document.querySelectorAll('.lightbox').forEach(lb => lb.style.display = 'none');
+
+    // Ouvre la cible
+    const target = document.querySelector(targetId);
+    if (target) {
+      target.style.display = 'flex';
+      // Remplace l'URL sans ajouter d'entrée dans l'historique
+      history.replaceState(null, '', targetId);
+      document.body.style.overflow = 'hidden';
+    }
   });
 });
 
-// Fermer la lightbox
+// Ferme la lightbox avec la croix
 document.querySelectorAll('.lightbox .close').forEach(btn => {
   btn.addEventListener('click', e => {
     e.preventDefault();
+
     const lightbox = btn.closest('.lightbox');
-    lightbox.style.display = 'none';
-    history.replaceState(null, null, ' ');
+    if (lightbox) lightbox.style.display = 'none';
+
+    // Supprime le hash sans créer d’entrée
+    history.replaceState(null, '', window.location.pathname + window.location.search);
     document.body.style.overflow = '';
   });
 });
@@ -60,5 +75,6 @@ window.addEventListener("load", () => {
       }
     });
   });
+
 
 
