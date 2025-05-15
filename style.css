@@ -461,3 +461,21 @@ img.lazy.loaded {
   padding-top: 20px;
 }
 
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+  }
+}
+
