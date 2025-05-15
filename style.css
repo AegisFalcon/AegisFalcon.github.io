@@ -477,5 +477,33 @@ img.lazy.loaded {
   .nav-link {
     font-size: 1rem;
   }
+
+  .gallery {
+    gap: 3px;
+}
+
+  .gallery img {
+    width: 120px;              /* largeur fixe pour uniformité */
+    height: 120px;             /* hauteur fixe pour alignement */
+    border-radius: 2px;
+ }
+
+ .nav {
+    top: 90%;
+ }
+
+ .next {
+    right: 30px;
+ }
+
+ .game-card {
+  gap: 1px;
+  padding: 5px;
+}
+
+ .game-card img {
+  width: 125px;              /* largeur fixe pour uniformité */
+  height: 175px;             /* hauteur fixe pour alignement */
+ }
 }
 
