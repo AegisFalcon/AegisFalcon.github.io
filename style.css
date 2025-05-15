@@ -32,8 +32,8 @@ nav li a {
     color: white;
     font-family: "Orbitron", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 500;
-    font-size: 20px;
-    letter-spacing: 2px;
+    font-size: 1.25rem;
+    letter-spacing: 0.125rem;
 }
 
 header {
@@ -148,11 +148,11 @@ a {
 .close {
     position: fixed;
     top: 20px;
-    right: 40px;
-    font-size: 2rem;
+    right: 35px;
+    font-size: 2.5rem;
     color: white;
     text-decoration: none;
-    padding: 4px 10px;
+    padding: 2px 9px;
     border-radius: 5px;
     transition: background 0.3s;
     line-height: 1;
@@ -164,13 +164,12 @@ a {
 
 .description {
     color: white;
-    font-size: 1rem;
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
     padding: 1px 20px;
     line-height: 1.4;
-    font-size: 20px;
+    font-size: 1.5rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -201,7 +200,7 @@ footer {
     color: #fff;
     text-align: center;
     padding: 10px 10px;
-    font-size: 0.9rem;
+    font-size: 1.10rem;
     margin-top: 40px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -259,6 +258,7 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
+  font-size: 1.5rem;
   }
 
 .ig-screenshots-h5 {
@@ -336,7 +336,7 @@ padding-top: 15px;
 .tier-list h2 {
   border-bottom: 4px solid white;
   margin-top: 1px;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -357,13 +357,13 @@ padding-top: 15px;
 
 .game-title {
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .game-comment {
   margin: 30px 0 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #ccc;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -374,6 +374,7 @@ padding-top: 15px;
   padding-bottom: 1px;
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5rem;
 }
 
 .Header-Gamelist {
@@ -388,7 +389,7 @@ padding: 1px;
   color: white;
   border: 1px solid white;
   border-radius: 4px;
-  font-size: 0.8rem;
+  font-size: 1rem;
   text-decoration: none;
   transition: background-color 0.3s ease, transform 0.3s ease;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
