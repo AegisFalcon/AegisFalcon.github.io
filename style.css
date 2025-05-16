@@ -141,6 +141,22 @@ a {
 }
 
 
+/* Custom scroll bar */
+html {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(255,255,255,0.3) transparent; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 4px;
+}
+
+
 /* Bouton de fermeture */
 .close {
     position: fixed;
