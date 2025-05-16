@@ -86,12 +86,6 @@ a {
   display: flex;
 }
   
-  .lightbox:target {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
   .lightbox-inner {
     display: flex;
     flex-direction: column;
@@ -119,6 +113,7 @@ a {
   width: 100%;
   height: 1265px;
 }
+
 /* Flèches navigation */
 .nav {
     position: fixed;
@@ -138,12 +133,13 @@ a {
 }
 
 .prev {
-    left: 30px;
+    left: 35px;
 }
 
 .next {
-    right: 45px;
+    right: calc(35px + var(--scrollbar-width, 0px));
 }
+
 
 /* Bouton de fermeture */
 .close {
@@ -500,7 +496,7 @@ img.lazy.loaded {
   }
 
   .next {
-    right: 30px;
+    right: 35px;
   }
 
   .close {
