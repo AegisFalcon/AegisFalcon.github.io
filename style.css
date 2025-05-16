@@ -48,7 +48,8 @@ a {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    column-gap: 12px; /* horizontal */
+    row-gap: 9px;   /* vertical */
     padding: 10px;
     max-width: 2800px;
     margin: auto;
@@ -461,7 +462,9 @@ img.lazy.loaded {
   padding-top: 20px;
 }
 
-@media (max-width: 768px) {
+/* Mobile Responsive */
+
+  @media (max-width: 768px) {
   nav ul {
     flex-direction: column;
     align-items: center;
@@ -479,31 +482,56 @@ img.lazy.loaded {
   }
 
   .gallery {
-    gap: 3px;
-}
+    column-gap: 8px; /* horizontal */
+    row-gap: 5px;
+    padding-left: 1px;
+    padding-right: 1px;
+    margin: 0;
+  }
 
   .gallery img {
-    width: 120px;              /* largeur fixe pour uniformité */
-    height: 120px;             /* hauteur fixe pour alignement */
+    width: 100px;              /* largeur fixe pour uniformité */
+    height: 100px;             /* hauteur fixe pour alignement */
     border-radius: 2px;
- }
+  }
 
- .nav {
+  .nav {
     top: 90%;
- }
+  }
 
- .next {
+  .next {
     right: 30px;
- }
+  }
 
- .game-card {
-  gap: 1px;
-  padding: 5px;
-}
+  .close {
+    top: 15px;
+    right: 20px;
+  }
 
- .game-card img {
-  width: 125px;              /* largeur fixe pour uniformité */
-  height: 175px;             /* hauteur fixe pour alignement */
- }
+  .description {
+    font-size: 1.2rem;
+  }
+
+  .game-card {
+    gap: 10px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 1px;
+  }
+
+  .game-card img {
+    width: 146px;              /* largeur fixe pour uniformité */
+    height: 204px;             /* hauteur fixe pour alignement */
+  }
+
+  .screenshot img {
+    width: 90vw;
+    height: auto;
+  }
+
+ .screenshot {
+    padding: 10px;
+    gap: 10px;
+  }
 }
 
