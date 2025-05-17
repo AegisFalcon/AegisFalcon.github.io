@@ -79,7 +79,8 @@ a {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
   }
 
  .lightbox.show {
@@ -106,7 +107,6 @@ a {
     max-width: 100%;
     max-height: 90vh;
     object-fit: contain;
-    overflow-y: auto;
 }
 
 .lightbox iframe {
@@ -133,11 +133,11 @@ a {
 }
 
 .prev {
-    left: 35px;
+    left: 40px;
 }
 
 .next {
-    right: calc(35px + var(--scrollbar-width, 0px));
+    right: calc(40px + var(--scrollbar-width, 0px));
 }
 
 
@@ -494,25 +494,24 @@ img.lazy.loaded {
   }
 
   .gallery {
-    column-gap: 8px; /* horizontal */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 8px;
     row-gap: 5px;
-    padding-left: 1px;
-    padding-right: 1px;
-    margin: 0;
-  }
+    padding: 5px 0;     /* plus de padding latéral */
+    width: 100%;         /* utilise toute la largeur de la fenêtre */
+    max-width: none;      /* désactive la limite de largeur */
+}
 
   .gallery img {
-    width: 100px;              /* largeur fixe pour uniformité */
-    height: 100px;             /* hauteur fixe pour alignement */
+    width: 125px;              /* largeur fixe pour uniformité */
+    height: 125px;             /* hauteur fixe pour alignement */
     border-radius: 2px;
   }
 
   .nav {
     top: 90%;
-  }
-
-  .next {
-    right: 35px;
   }
 
   .close {
