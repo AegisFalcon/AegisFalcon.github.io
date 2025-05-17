@@ -126,6 +126,9 @@ a {
     z-index: 1001;
     line-height: 1;
     will-change: transform;
+    user-select: none;         /* évite la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+    outline: none;
 }
 
 .nav:hover {
@@ -170,6 +173,9 @@ body::-webkit-scrollbar-thumb {
     transition: background 0.3s;
     line-height: 1;
     cursor: pointer;
+    user-select: none;         /* évite la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+    outline: none;
 }
 
 .close:hover {

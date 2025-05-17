@@ -54,7 +54,7 @@ document.querySelectorAll('.lightbox .nav').forEach(nav => {
   });
 });
 
-// Effet fade in images
+               // Effet fade in images
 
 document.querySelectorAll('img.lazy').forEach(img => {
   img.classList.add('lazy'); // au cas où
@@ -77,7 +77,7 @@ window.addEventListener("load", () => {
   });
 
 
-//fix flèche droite 
+            //fix flèche droite 
 function setScrollbarWidthVar() {
     const scrollDiv = document.createElement("div");
     scrollDiv.style.visibility = "hidden";
@@ -97,7 +97,7 @@ function setScrollbarWidthVar() {
   window.addEventListener("resize", setScrollbarWidthVar);
 
 
-// Fix 100vh mobile iOS bug
+             // Fix 100vh mobile iOS bug
 function setRealVhUnit() {
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -107,7 +107,7 @@ window.addEventListener('resize', setRealVhUnit);
 window.addEventListener('load', setRealVhUnit);
 
 
-// Next et Prev sans ID
+             // Next et Prev sans ID
 const lightboxes = [...document.querySelectorAll('.lightbox')];
 
 function showLightbox(index) {
@@ -157,4 +157,42 @@ document.querySelectorAll('a[href^="#img"]').forEach((link, i) => {
     e.preventDefault();
     showLightbox(i);
   });
+});
+
+
+              // Navigation Flèche Clavier
+document.addEventListener('keydown', function (e) {
+  const lightboxes = Array.from(document.querySelectorAll('.lightbox'));
+  const activeLightbox = lightboxes.find(lb => lb.style.display === 'flex');
+  if (!activeLightbox) return;
+
+  const currentIndex = parseInt(activeLightbox.dataset.index, 10);
+  const maxIndex = lightboxes.length - 1;
+
+  if (e.key === 'ArrowRight') {
+    e.preventDefault();
+    const nextIndex = currentIndex === maxIndex ? 0 : currentIndex + 1;
+    const next = lightboxes.find(lb => parseInt(lb.dataset.index, 10) === nextIndex);
+    if (next) {
+      activeLightbox.style.display = 'none';
+      next.style.display = 'flex';
+    }
+  }
+
+  if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    const prevIndex = currentIndex === 0 ? maxIndex : currentIndex - 1;
+    const prev = lightboxes.find(lb => parseInt(lb.dataset.index, 10) === prevIndex);
+    if (prev) {
+      activeLightbox.style.display = 'none';
+      prev.style.display = 'flex';
+    }
+  }
+
+  if (e.key === 'Escape') {
+    e.preventDefault();
+    activeLightbox.style.display = 'none';
+    document.body.style.overflow = '';
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
 });
