@@ -510,8 +510,10 @@ img.lazy.loaded {
 }
 
   .gallery img {
-    width: 125px;              /* largeur fixe pour uniformité */
-    height: 125px;             /* hauteur fixe pour alignement */
+    width: calc(20 * var(--vh));
+    height: calc(20 * var(--vh));
+    max-width: 30vw;  /* limite pour éviter que ça déborde */
+    max-height: 30vw;             /* hauteur fixe pour alignement */
     border-radius: 2px;
   }
 

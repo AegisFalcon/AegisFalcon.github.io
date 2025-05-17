@@ -95,3 +95,13 @@ function setScrollbarWidthVar() {
 
   window.addEventListener("load", setScrollbarWidthVar);
   window.addEventListener("resize", setScrollbarWidthVar);
+
+
+// Fix 100vh mobile iOS bug
+function setRealVhUnit() {
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+window.addEventListener('resize', setRealVhUnit);
+window.addEventListener('load', setRealVhUnit);
