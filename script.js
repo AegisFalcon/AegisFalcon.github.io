@@ -105,3 +105,56 @@ function setRealVhUnit() {
 
 window.addEventListener('resize', setRealVhUnit);
 window.addEventListener('load', setRealVhUnit);
+
+
+// Next et Prev sans ID
+const lightboxes = [...document.querySelectorAll('.lightbox')];
+
+function showLightbox(index) {
+  lightboxes.forEach(lb => lb.style.display = 'none');
+  const target = lightboxes[index];
+  if (target) {
+    target.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    currentIndex = index;
+  }
+}
+
+let currentIndex = 0;
+
+// Attache les flèches dynamiquement
+lightboxes.forEach((lightbox, i) => {
+  const prevBtn = lightbox.querySelector('.prev');
+  const nextBtn = lightbox.querySelector('.next');
+  const closeBtn = lightbox.querySelector('.close');
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', e => {
+      e.preventDefault();
+      showLightbox((i - 1 + lightboxes.length) % lightboxes.length);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', e => {
+      e.preventDefault();
+      showLightbox((i + 1) % lightboxes.length);
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', e => {
+      e.preventDefault();
+      lightbox.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  }
+});
+
+// Ouverture au clic sur les miniatures
+document.querySelectorAll('a[href^="#img"]').forEach((link, i) => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    showLightbox(i);
+  });
+});
