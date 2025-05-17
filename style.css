@@ -423,6 +423,7 @@ padding: 1px;
   align-items: center;
   padding: 40px 20px;
   color: white;
+  overflow-x: hidden;
 }
 
 .about-container {
@@ -440,6 +441,7 @@ padding: 1px;
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
+  overflow-x: hidden;
 }
 
 .about-text {
