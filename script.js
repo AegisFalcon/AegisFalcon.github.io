@@ -161,6 +161,12 @@ document.querySelectorAll('a[href^="#img"]').forEach((link, i) => {
 
 
               // Navigation Flèche Clavier
+// 1. Assigner automatiquement les index
+document.querySelectorAll('.lightbox').forEach((lb, index) => {
+  lb.dataset.index = index;
+});
+
+// 2. Navigation clavier
 document.addEventListener('keydown', function (e) {
   const lightboxes = Array.from(document.querySelectorAll('.lightbox'));
   const activeLightbox = lightboxes.find(lb => lb.style.display === 'flex');
@@ -195,4 +201,25 @@ document.addEventListener('keydown', function (e) {
     document.body.style.overflow = '';
     history.replaceState(null, '', window.location.pathname + window.location.search);
   }
+});
+
+
+// Associer chaque miniature à sa lightbox dans l'ordre
+document.addEventListener("DOMContentLoaded", () => {
+  const thumbnails = document.querySelectorAll(".screenshot a");
+  const lightboxes = document.querySelectorAll(".lightbox");
+
+  thumbnails.forEach((thumb, index) => {
+    thumb.addEventListener("click", (e) => {
+      e.preventDefault();
+      // Fermer toutes les lightbox
+      lightboxes.forEach(lb => lb.style.display = 'none');
+      // Ouvrir la lightbox correspondante
+      const target = lightboxes[index];
+      if (target) {
+        target.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
 });
