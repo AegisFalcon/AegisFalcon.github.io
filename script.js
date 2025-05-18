@@ -204,21 +204,31 @@ document.addEventListener('keydown', function (e) {
 });
 
 
-// Associer chaque miniature à sa lightbox dans l'ordre
+       // Associer chaque miniature à sa lightbox dans l'ordre sans ID
 document.addEventListener("DOMContentLoaded", () => {
-  const thumbnails = document.querySelectorAll(".screenshot a");
-  const lightboxes = document.querySelectorAll(".lightbox");
+  const allThumbnails = document.querySelectorAll("a > img.lazy");
+  const allLightboxes = document.querySelectorAll(".lightbox");
 
-  thumbnails.forEach((thumb, index) => {
-    thumb.addEventListener("click", (e) => {
+  // Vérifie que le nombre d’images et de lightboxes correspond
+  if (allThumbnails.length !== allLightboxes.length) {
+    console.warn("Nombre de miniatures et de lightboxes différent. Vérifie leur ordre !");
+  }
+
+  allThumbnails.forEach((img, index) => {
+    const link = img.closest("a");
+    if (!link) return;
+
+    link.addEventListener("click", e => {
       e.preventDefault();
-      // Fermer toutes les lightbox
-      lightboxes.forEach(lb => lb.style.display = 'none');
-      // Ouvrir la lightbox correspondante
-      const target = lightboxes[index];
+      // Ferme toutes les lightboxes
+      allLightboxes.forEach(lb => lb.style.display = "none");
+
+      // Ouvre la bonne lightbox
+      const target = allLightboxes[index];
       if (target) {
-        target.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+        target.style.display = "flex";
+        document.body.style.overflow = "hidden";
+        history.replaceState(null, "", ""); // Nettoie le hash
       }
     });
   });
