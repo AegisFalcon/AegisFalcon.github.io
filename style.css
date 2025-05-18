@@ -221,7 +221,7 @@ footer {
     text-align: center;
     padding: 10px 10px;
     font-size: 1.10rem;
-    margin-top: 40px;
+    margin-top: 37px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -368,7 +368,7 @@ padding-top: 15px;
 }
 
 .tier li {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   padding: 10px;
   border-left: 1px solid white;
   border-right: 1px solid white;
@@ -429,7 +429,7 @@ padding: 1px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 20px;
+  padding: 0px 20px;
   color: white;
   overflow-x: hidden;
 }
