@@ -516,7 +516,7 @@ img.lazy.loaded {
     padding: 5px 0;     /* plus de padding latéral */
     width: 100%;         /* utilise toute la largeur de la fenêtre */
     max-width: none;      /* désactive la limite de largeur */
-}
+  }
 
   .gallery img {
     width: calc(20 * var(--vh));
@@ -524,6 +524,15 @@ img.lazy.loaded {
     max-width: 30vw;  /* limite pour éviter que ça déborde */
     max-height: 30vw;             /* hauteur fixe pour alignement */
     border-radius: 2px;
+  }
+
+  .lightbox-inner {
+    max-width: 100%;
+  }
+  
+
+  .lightbox img {
+      max-height: 100vh;
   }
 
   .nav {
