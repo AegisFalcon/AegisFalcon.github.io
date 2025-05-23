@@ -10,19 +10,6 @@
 </head>
 
 <body>
-    <script>
-        // Attend que le DOM soit prêt juste pour détecter la lightbox visée par le hash
-        document.addEventListener("DOMContentLoaded", () => {
-        const hash = window.location.hash;
-        if (hash) {
-            const target = document.querySelector(hash);
-            if (target && target.classList.contains("lightbox")) {
-            target.style.display = "flex";
-            document.body.style.overflow = "hidden";
-            }
-        }
-        });
-    </script>
     <nav>
         <ul>
             <li><a class="nav-link active" href="index.html">Portfolio</a></li>
