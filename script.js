@@ -1,103 +1,164 @@
-// Garde le scroll au même endroit après fermeture lightbox
+// --------- VARIABLES UTILES ----------
+const lightboxes = [...document.querySelectorAll('.lightbox')];
+let currentIndex = 0;
 
-function openLightbox(targetId) {
-  document.querySelectorAll('.lightbox').forEach(lb => lb.style.display = 'none');
-  const target = document.querySelector(targetId);
-  if (target) {
-    target.style.display = 'flex';
-    window.location.hash = targetId;
-    document.body.style.overflow = 'hidden';
+// --------- OUVRIR LIGHTBOX ----------
+function openLightboxByIndex(index, pushState = false) {
+  if (index < 0 || index >= lightboxes.length) return;
+  
+  // Fermer toutes les lightboxes
+  lightboxes.forEach(lb => lb.style.display = 'none');
+
+  const target = lightboxes[index];
+  if (!target) return;
+
+  target.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  currentIndex = index;
+
+  // Gérer le hash dans l'URL sans empiler l'historique (pushState = false)
+  if (pushState) {
+    history.pushState(null, '', '#' + target.id);
+  } else {
+    history.replaceState(null, '', '#' + target.id);
   }
 }
 
-// Ouvre la lightbox sans empiler l'historique
-document.querySelectorAll('a[href^="#img"]').forEach(link => {
-  const targetId = link.getAttribute('href');
+// --------- OUVRIR LIGHTBOX PAR HASH AU CHARGEMENT ----------
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash;
+  if (hash) {
+    const targetLightbox = document.querySelector(hash);
+    const index = lightboxes.indexOf(targetLightbox);
+    if (index !== -1) {
+      openLightboxByIndex(index, false);
+    }
+  }
+});
+
+// --------- CLIC SUR MINIATURES POUR OUVRIR LIGHTBOX ----------
+document.querySelectorAll('a > img.lazy').forEach((img, index) => {
+  const link = img.closest('a');
+  if (!link) return;
 
   link.addEventListener('click', e => {
     e.preventDefault();
-
-    // Ferme toutes les lightbox d’abord
-    document.querySelectorAll('.lightbox').forEach(lb => lb.style.display = 'none');
-
-    // Ouvre la cible
-    const target = document.querySelector(targetId);
-    if (target) {
-      target.style.display = 'flex';
-      // Remplace l'URL sans ajouter d'entrée dans l'historique
-      history.replaceState(null, '', targetId);
-      document.body.style.overflow = 'hidden';
-    }
+    openLightboxByIndex(index, true);
   });
 });
 
-// Ferme la lightbox avec la croix
-document.querySelectorAll('.lightbox .close').forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
+// --------- BOUTONS PREV / NEXT / CLOSE DANS LIGHTBOX ----------
+lightboxes.forEach((lb, i) => {
+  const prevBtn = lb.querySelector('.prev');
+  const nextBtn = lb.querySelector('.next');
+  const closeBtn = lb.querySelector('.close');
 
-    const lightbox = btn.closest('.lightbox');
-    if (lightbox) lightbox.style.display = 'none';
-
-    // Supprime le hash sans créer d’entrée
-    history.replaceState(null, '', window.location.pathname + window.location.search);
-    document.body.style.overflow = '';
-  });
-});
-
-// Gérer les flèches prev/next pour ne pas changer le hash
-document.querySelectorAll('.lightbox .nav').forEach(nav => {
-  nav.addEventListener('click', e => {
-    e.preventDefault();
-    const targetId = nav.getAttribute('href');
-    openLightbox(targetId);
-  });
-});
-
-               // Effet fade in images
-
-document.querySelectorAll('img.lazy').forEach(img => {
-  img.classList.add('lazy'); // au cas où
-
-  img.addEventListener('load', () => {
-    img.classList.add('loaded');
-  });
-});
-
-window.addEventListener("load", () => {
-    document.querySelectorAll('img.lazy').forEach(img => {
-      if (img.complete) {
-        img.classList.add("loaded");
-      } else {
-        img.addEventListener("load", () => {
-          img.classList.add("loaded");
-        });
-      }
+  if (prevBtn) {
+    prevBtn.addEventListener('click', e => {
+      e.preventDefault();
+      openLightboxByIndex((i - 1 + lightboxes.length) % lightboxes.length, false);
     });
-  });
-
-
-            //fix flèche droite 
-function setScrollbarWidthVar() {
-    const scrollDiv = document.createElement("div");
-    scrollDiv.style.visibility = "hidden";
-    scrollDiv.style.overflow = "scroll";
-    scrollDiv.style.position = "absolute";
-    scrollDiv.style.top = "-9999px";
-    scrollDiv.style.width = "100px";
-    scrollDiv.style.height = "100px";
-    document.body.appendChild(scrollDiv);
-    const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-    document.body.removeChild(scrollDiv);
-
-    document.documentElement.style.setProperty("--scrollbar-width", `${scrollbarWidth}px`);
   }
 
-  window.addEventListener("load", setScrollbarWidthVar);
-  window.addEventListener("resize", setScrollbarWidthVar);
+  if (nextBtn) {
+    nextBtn.addEventListener('click', e => {
+      e.preventDefault();
+      openLightboxByIndex((i + 1) % lightboxes.length, false);
+    });
+  }
 
+  if (closeBtn) {
+    closeBtn.addEventListener('click', e => {
+      e.preventDefault();
+      lb.style.display = 'none';
+      document.body.style.overflow = '';
+      // Retirer le hash sans empiler l'historique
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    });
+  }
+});
 
-             // Fix 100vh mobile iOS bug
+// --------- NAVIGATION AU CLAVIER (flèches et Escape) ----------
+document.addEventListener('keydown', e => {
+  const activeLb = lightboxes.find(lb => lb.style.display === 'flex');
+  if (!activeLb) return;
+
+  const index = lightboxes.indexOf(activeLb);
+  if (index === -1) return;
+
+  switch (e.key) {
+    case 'ArrowRight':
+      e.preventDefault();
+      openLightboxByIndex((index + 1) % lightboxes.length, false);
+      break;
+
+    case 'ArrowLeft':
+      e.preventDefault();
+      openLightboxByIndex((index - 1 + lightboxes.length) % lightboxes.length, false);
+      break;
+
+    case 'Escape':
+      e.preventDefault();
+      activeLb.style.display = 'none';
+      document.body.style.overflow = '';
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+
+      // Supprimer la classe direct-lightbox et réafficher la galerie
+      document.documentElement.classList.remove('direct-lightbox');
+      const gallery = document.querySelector('.gallery');
+      if (gallery) {
+        gallery.style.display = 'flex'; // ou 'block' selon ton CSS
+      }
+      break;
+  }
+});
+
+// --------- GESTION DU POPSTATE (boutons navigateur) ----------
+window.addEventListener('popstate', () => {
+  const hash = window.location.hash;
+  if (!hash) {
+    // plus de hash, on enlève la classe direct-lightbox
+    document.documentElement.classList.remove('direct-lightbox');
+    // on affiche la galerie
+    document.querySelector('.gallery').style.display = 'flex'; // ou block selon ton CSS
+  }
+});
+
+// --------- EFFET FADE-IN POUR IMAGES LAZY ----------
+function addLazyLoadFadeEffect() {
+  const imgs = document.querySelectorAll('img.lazy');
+  imgs.forEach(img => {
+    if (img.complete) {
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', () => img.classList.add('loaded'));
+    }
+  });
+}
+
+window.addEventListener('load', addLazyLoadFadeEffect);
+
+// --------- FIX POUR LARGEUR SCROLLBAR DYNAMIQUE ---------
+function setScrollbarWidthVar() {
+  const scrollDiv = document.createElement('div');
+  scrollDiv.style.visibility = 'hidden';
+  scrollDiv.style.overflow = 'scroll';
+  scrollDiv.style.position = 'absolute';
+  scrollDiv.style.top = '-9999px';
+  scrollDiv.style.width = '100px';
+  scrollDiv.style.height = '100px';
+  document.body.appendChild(scrollDiv);
+
+  const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+  document.body.removeChild(scrollDiv);
+
+  document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+}
+
+window.addEventListener('load', setScrollbarWidthVar);
+window.addEventListener('resize', setScrollbarWidthVar);
+
+// --------- FIX 100vh SUR MOBILE iOS ---------
 function setRealVhUnit() {
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -106,147 +167,21 @@ function setRealVhUnit() {
 window.addEventListener('resize', setRealVhUnit);
 window.addEventListener('load', setRealVhUnit);
 
-
-             // Next et Prev sans ID
-const lightboxes = [...document.querySelectorAll('.lightbox')];
-
-function showLightbox(index) {
-  lightboxes.forEach(lb => lb.style.display = 'none');
-  const target = lightboxes[index];
-  if (target) {
-    target.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    currentIndex = index;
-    history.replaceState(null, '', '#' + target.id);
-  }
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  const hash = window.location.hash;
-  if (hash) {
-    const targetLightbox = document.querySelector(hash);
-    if (targetLightbox) {
-      const index = lightboxes.indexOf(targetLightbox);
-      if (index !== -1) {
-        showLightbox(index);
-      }
-    }
-  }
-});
-
-let currentIndex = 0;
-
-// Attache les flèches dynamiquement
-lightboxes.forEach((lightbox, i) => {
-  const prevBtn = lightbox.querySelector('.prev');
-  const nextBtn = lightbox.querySelector('.next');
-  const closeBtn = lightbox.querySelector('.close');
-
-  if (prevBtn) {
-    prevBtn.addEventListener('click', e => {
-      e.preventDefault();
-      const newIndex = (i - 1 + lightboxes.length) % lightboxes.length;
-      showLightbox(newIndex);
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', e => {
-      e.preventDefault();
-      const newIndex = (i + 1) % lightboxes.length;
-      showLightbox(newIndex);
-    });
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', e => {
-      e.preventDefault();
-      lightbox.style.display = 'none';
-      document.body.style.overflow = '';
-    });
-  }
-});
-
-
-              // Navigation Flèche Clavier
-// 1. Assigner automatiquement les index
-document.querySelectorAll('.lightbox').forEach((lb, index) => {
-  lb.dataset.index = index;
-});
-
-// 2. Navigation clavier
-document.addEventListener('keydown', function (e) {
-  const lightboxes = Array.from(document.querySelectorAll('.lightbox'));
-  const activeLightbox = lightboxes.find(lb => lb.style.display === 'flex');
-  if (!activeLightbox) return;
-
-  const currentIndex = parseInt(activeLightbox.dataset.index, 10);
-  const maxIndex = lightboxes.length - 1;
-
-  if (e.key === 'ArrowRight') {
+// Exemple dans ton code de fermeture lightbox
+document.querySelectorAll('.lightbox .close').forEach(btn => {
+  btn.addEventListener('click', e => {
     e.preventDefault();
-    const nextIndex = currentIndex === maxIndex ? 0 : currentIndex + 1;
-    const next = lightboxes.find(lb => parseInt(lb.dataset.index, 10) === nextIndex);
-    if (next) {
-      activeLightbox.style.display = 'none';
-      next.style.display = 'flex';
-      history.replaceState(null, '', '#' + next.id);
-    }
-  }
+    const lightbox = btn.closest('.lightbox');
+    if (lightbox) lightbox.style.display = 'none';
 
-  if (e.key === 'ArrowLeft') {
-    e.preventDefault();
-    const prevIndex = currentIndex === 0 ? maxIndex : currentIndex - 1;
-    const prev = lightboxes.find(lb => parseInt(lb.dataset.index, 10) === prevIndex);
-    if (prev) {
-      activeLightbox.style.display = 'none';
-      prev.style.display = 'flex';
-      history.replaceState(null, '', '#' + prev.id);
-    }
-  }
-
-  if (e.key === 'Escape') {
-    e.preventDefault();
-    activeLightbox.style.display = 'none';
-    document.body.style.overflow = '';
+    // Supprime le hash
     history.replaceState(null, '', window.location.pathname + window.location.search);
-  }
-});
 
-
-// Ouvrir un lien pour chaque ligthbox
-document.addEventListener("DOMContentLoaded", () => {
-  if (!document.documentElement.classList.contains('direct-lightbox')) {
-  const allThumbnails = document.querySelectorAll("a > img.lazy");
-  const allLightboxes = document.querySelectorAll(".lightbox");
-
-  if (allThumbnails.length !== allLightboxes.length) {
-    console.warn("Nombre de miniatures et de lightboxes différent. Vérifie leur ordre !");
-  }
-
-  allThumbnails.forEach((img, index) => {
-    const link = img.closest("a");
-    if (!link) return;
-
-    link.addEventListener("click", e => {
-      e.preventDefault();
-
-      // Ferme toutes les lightboxes
-      allLightboxes.forEach(lb => lb.style.display = "none");
-
-      // Ouvre la bonne lightbox
-      const target = allLightboxes[index];
-      if (target) {
-        target.style.display = "flex";
-        document.body.style.overflow = "hidden";
-        const id = target.id;
-        if (id) {
-          history.pushState(null, "", `#${id}`); // ✅ Affiche le hash dans l’URL
-               }
-        }
-      });
-    });
-  }
+    // Réaffiche la galerie et enlève la classe
+    document.documentElement.classList.remove('direct-lightbox');
+    document.querySelector('.gallery').style.display = 'flex'; // ou block
+    document.body.style.overflow = '';
+  });
 });
 
 // Fermer ligthbox avec flèche gauche du navigateur

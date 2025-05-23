@@ -492,6 +492,11 @@ img.lazy.loaded {
   display: none;
 }
 
+html.direct-lightbox body {
+  /* Par exemple, cacher la galerie principale derrière la lightbox */
+  overflow: hidden;
+}
+
 /* Mobile Responsive */
 
   @media (max-width: 768px) {
