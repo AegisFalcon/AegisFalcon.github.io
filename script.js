@@ -216,6 +216,7 @@ document.addEventListener('keydown', function (e) {
 
 // Ouvrir un lien pour chaque ligthbox
 document.addEventListener("DOMContentLoaded", () => {
+  if (!document.documentElement.classList.contains('direct-lightbox')) {
   const allThumbnails = document.querySelectorAll("a > img.lazy");
   const allLightboxes = document.querySelectorAll(".lightbox");
 
@@ -241,10 +242,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const id = target.id;
         if (id) {
           history.pushState(null, "", `#${id}`); // ✅ Affiche le hash dans l’URL
+               }
         }
-      }
+      });
     });
-  });
+  }
 });
 
 // Fermer ligthbox avec flèche gauche du navigateur

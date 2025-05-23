@@ -488,6 +488,10 @@ img.lazy.loaded {
   padding-top: 20px;
 }
 
+.direct-lightbox .gallery {
+  display: none;
+}
+
 /* Mobile Responsive */
 
   @media (max-width: 768px) {
