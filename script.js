@@ -167,7 +167,7 @@ function setRealVhUnit() {
 window.addEventListener('resize', setRealVhUnit);
 window.addEventListener('load', setRealVhUnit);
 
-// Exemple dans ton code de fermeture lightbox
+// Fix share link speed (charger la galerie seulement après avoir quitté la lightbox)
 document.querySelectorAll('.lightbox .close').forEach(btn => {
   btn.addEventListener('click', e => {
     e.preventDefault();
