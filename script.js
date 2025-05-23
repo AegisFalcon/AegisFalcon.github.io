@@ -117,8 +117,22 @@ function showLightbox(index) {
     target.style.display = 'flex';
     document.body.style.overflow = 'hidden';
     currentIndex = index;
+    history.replaceState(null, '', '#' + target.id);
   }
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash;
+  if (hash) {
+    const targetLightbox = document.querySelector(hash);
+    if (targetLightbox) {
+      const index = lightboxes.indexOf(targetLightbox);
+      if (index !== -1) {
+        showLightbox(index);
+      }
+    }
+  }
+});
 
 let currentIndex = 0;
 
@@ -131,14 +145,16 @@ lightboxes.forEach((lightbox, i) => {
   if (prevBtn) {
     prevBtn.addEventListener('click', e => {
       e.preventDefault();
-      showLightbox((i - 1 + lightboxes.length) % lightboxes.length);
+      const newIndex = (i - 1 + lightboxes.length) % lightboxes.length;
+      showLightbox(newIndex);
     });
   }
 
   if (nextBtn) {
     nextBtn.addEventListener('click', e => {
       e.preventDefault();
-      showLightbox((i + 1) % lightboxes.length);
+      const newIndex = (i + 1) % lightboxes.length;
+      showLightbox(newIndex);
     });
   }
 
@@ -149,14 +165,6 @@ lightboxes.forEach((lightbox, i) => {
       document.body.style.overflow = '';
     });
   }
-});
-
-// Ouverture au clic sur les miniatures
-document.querySelectorAll('a[href^="#img"]').forEach((link, i) => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    showLightbox(i);
-  });
 });
 
 
@@ -182,6 +190,7 @@ document.addEventListener('keydown', function (e) {
     if (next) {
       activeLightbox.style.display = 'none';
       next.style.display = 'flex';
+      history.replaceState(null, '', '#' + next.id);
     }
   }
 
@@ -192,6 +201,7 @@ document.addEventListener('keydown', function (e) {
     if (prev) {
       activeLightbox.style.display = 'none';
       prev.style.display = 'flex';
+      history.replaceState(null, '', '#' + prev.id);
     }
   }
 
@@ -204,12 +214,11 @@ document.addEventListener('keydown', function (e) {
 });
 
 
-       // Associer chaque miniature à sa lightbox dans l'ordre sans ID
+// Ouvrir un lien pour chaque ligthbox
 document.addEventListener("DOMContentLoaded", () => {
   const allThumbnails = document.querySelectorAll("a > img.lazy");
   const allLightboxes = document.querySelectorAll(".lightbox");
 
-  // Vérifie que le nombre d’images et de lightboxes correspond
   if (allThumbnails.length !== allLightboxes.length) {
     console.warn("Nombre de miniatures et de lightboxes différent. Vérifie leur ordre !");
   }
@@ -220,6 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     link.addEventListener("click", e => {
       e.preventDefault();
+
       // Ferme toutes les lightboxes
       allLightboxes.forEach(lb => lb.style.display = "none");
 
@@ -228,8 +238,32 @@ document.addEventListener("DOMContentLoaded", () => {
       if (target) {
         target.style.display = "flex";
         document.body.style.overflow = "hidden";
-        history.replaceState(null, "", ""); // Nettoie le hash
+        const id = target.id;
+        if (id) {
+          history.pushState(null, "", `#${id}`); // ✅ Affiche le hash dans l’URL
+        }
       }
     });
   });
+});
+
+// Fermer ligthbox avec flèche gauche du navigateur
+window.addEventListener('popstate', () => {
+  const hash = window.location.hash;
+
+  if (!hash) {
+    // Pas de hash = fermer toutes les lightbox
+    document.querySelectorAll('.lightbox').forEach(lb => {
+      lb.style.display = 'none';
+    });
+    document.body.style.overflow = '';
+  } else {
+    // Si tu veux, tu peux rouvrir la lightbox correspondant au hash
+    // const target = document.querySelector(hash);
+    // if (target) {
+    //   document.querySelectorAll('.lightbox').forEach(lb => lb.style.display = 'none');
+    //   target.style.display = 'flex';
+    //   document.body.style.overflow = 'hidden';
+    // }
+  }
 });
