@@ -11,18 +11,17 @@
 
 <body>
     <script>
-    window.addEventListener('DOMContentLoaded', () => {
-  const hash = window.location.hash;
-  if (hash) {
-    const targetLightbox = document.querySelector(hash);
-    if (targetLightbox) {
-      const index = lightboxes.indexOf(targetLightbox);
-      if (index !== -1) {
-        showLightbox(index);
-      }
-    }
-  }
-});
+        // Attend que le DOM soit prêt juste pour détecter la lightbox visée par le hash
+        document.addEventListener("DOMContentLoaded", () => {
+        const hash = window.location.hash;
+        if (hash) {
+            const target = document.querySelector(hash);
+            if (target && target.classList.contains("lightbox")) {
+            target.style.display = "flex";
+            document.body.style.overflow = "hidden";
+            }
+        }
+        });
     </script>
     <nav>
         <ul>
