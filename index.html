@@ -10,6 +10,19 @@
 </head>
 
 <body>
+    <script>
+    // Ouverture immédiate d'une lightbox si l'URL contient un hash
+    document.addEventListener('DOMContentLoaded', function () {
+      const hash = window.location.hash;
+      if (hash) {
+        const targetLightbox = document.querySelector(hash);
+        if (targetLightbox) {
+          targetLightbox.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
+      }
+    });
+    </script>
     <nav>
         <ul>
             <li><a class="nav-link active" href="index.html">Portfolio</a></li>
