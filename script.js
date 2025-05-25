@@ -2,11 +2,23 @@
 const lightboxes = [...document.querySelectorAll('.lightbox')];
 let currentIndex = 0;
 
+// --------- AFFICHAGE / MASQUAGE DES BOUTONS SCROLL ----------
+function openLightbox() {
+  document.querySelector('.lightbox')?.classList.add('show');
+  const scrollBtns = document.querySelector('.scroll-buttons');
+  if (scrollBtns) scrollBtns.style.display = 'none';
+}
+
+function closeLightbox() {
+  document.querySelector('.lightbox')?.classList.remove('show');
+  const scrollBtns = document.querySelector('.scroll-buttons');
+  if (scrollBtns) scrollBtns.style.display = 'flex';
+}
+
 // --------- OUVRIR LIGHTBOX ----------
 function openLightboxByIndex(index, pushState = false) {
   if (index < 0 || index >= lightboxes.length) return;
   
-  // Fermer toutes les lightboxes
   lightboxes.forEach(lb => lb.style.display = 'none');
 
   const target = lightboxes[index];
@@ -16,7 +28,8 @@ function openLightboxByIndex(index, pushState = false) {
   document.body.style.overflow = 'hidden';
   currentIndex = index;
 
-  // Gérer le hash dans l'URL sans empiler l'historique (pushState = false)
+  openLightbox();
+
   if (pushState) {
     history.pushState(null, '', '#' + target.id);
   } else {
@@ -41,7 +54,6 @@ document.querySelectorAll('a > img.lazy').forEach((img, index) => {
   const link = img.closest('a');
   if (!link) return;
 
-  // Vérifie que le lien cible bien une lightbox
   const target = link.getAttribute('href');
   if (target && target.startsWith('#')) {
     link.addEventListener('click', e => {
@@ -76,13 +88,13 @@ lightboxes.forEach((lb, i) => {
       e.preventDefault();
       lb.style.display = 'none';
       document.body.style.overflow = '';
-      // Retirer le hash sans empiler l'historique
+      closeLightbox();
       history.replaceState(null, '', window.location.pathname + window.location.search);
     });
   }
 });
 
-// --------- NAVIGATION AU CLAVIER (flèches et Escape) ----------
+// --------- NAVIGATION AU CLAVIER ----------
 document.addEventListener('keydown', e => {
   const activeLb = lightboxes.find(lb => lb.style.display === 'flex');
   if (!activeLb) return;
@@ -105,13 +117,13 @@ document.addEventListener('keydown', e => {
       e.preventDefault();
       activeLb.style.display = 'none';
       document.body.style.overflow = '';
+      closeLightbox();
       history.replaceState(null, '', window.location.pathname + window.location.search);
 
-      // Supprimer la classe direct-lightbox et réafficher la galerie
       document.documentElement.classList.remove('direct-lightbox');
       const gallery = document.querySelector('.gallery');
       if (gallery) {
-        gallery.style.display = 'flex'; // ou 'block' selon ton CSS
+        gallery.style.display = 'flex';
       }
       break;
   }
@@ -120,11 +132,19 @@ document.addEventListener('keydown', e => {
 // --------- GESTION DU POPSTATE (boutons navigateur) ----------
 window.addEventListener('popstate', () => {
   const hash = window.location.hash;
+
   if (!hash) {
-    // plus de hash, on enlève la classe direct-lightbox
+    document.querySelectorAll('.lightbox').forEach(lb => {
+      lb.style.display = 'none';
+    });
+    document.body.style.overflow = '';
+    closeLightbox();
+
     document.documentElement.classList.remove('direct-lightbox');
-    // on affiche la galerie
-    document.querySelector('.gallery').style.display = 'flex'; // ou block selon ton CSS
+    const gallery = document.querySelector('.gallery');
+    if (gallery) {
+      gallery.style.display = 'flex';
+    }
   }
 });
 
@@ -171,40 +191,34 @@ function setRealVhUnit() {
 window.addEventListener('resize', setRealVhUnit);
 window.addEventListener('load', setRealVhUnit);
 
-// Fix share link speed (charger la galerie seulement après avoir quitté la lightbox)
+// --------- FIX SHARE LINK SPEED (close et galerie) ---------
 document.querySelectorAll('.lightbox .close').forEach(btn => {
   btn.addEventListener('click', e => {
     e.preventDefault();
     const lightbox = btn.closest('.lightbox');
     if (lightbox) lightbox.style.display = 'none';
 
-    // Supprime le hash
     history.replaceState(null, '', window.location.pathname + window.location.search);
 
-    // Réaffiche la galerie et enlève la classe
     document.documentElement.classList.remove('direct-lightbox');
-    document.querySelector('.gallery').style.display = 'flex'; // ou block
+    document.querySelector('.gallery').style.display = 'flex';
     document.body.style.overflow = '';
+    closeLightbox();
   });
 });
 
-// Fermer ligthbox avec flèche gauche du navigateur
-window.addEventListener('popstate', () => {
-  const hash = window.location.hash;
+// --------- BOUTONS SCROLL HAUT/BAS ----------
+const scrollStep = 500; // nombre de pixels à scroller par clic
 
-  if (!hash) {
-    // Pas de hash = fermer toutes les lightbox
-    document.querySelectorAll('.lightbox').forEach(lb => {
-      lb.style.display = 'none';
-    });
-    document.body.style.overflow = '';
-  } else {
-    // Si tu veux, tu peux rouvrir la lightbox correspondant au hash
-    // const target = document.querySelector(hash);
-    // if (target) {
-    //   document.querySelectorAll('.lightbox').forEach(lb => lb.style.display = 'none');
-    //   target.style.display = 'flex';
-    //   document.body.style.overflow = 'hidden';
-    // }
-  }
+document.getElementById("scroll-up").addEventListener("click", function () {
+  const currentScroll = window.scrollY || window.pageYOffset;
+  const newScroll = Math.max(0, currentScroll - scrollStep);
+  window.scrollTo({ top: newScroll, behavior: "smooth" });
+});
+
+document.getElementById("scroll-down").addEventListener("click", function () {
+  const currentScroll = window.scrollY || window.pageYOffset;
+  const maxScroll = document.body.scrollHeight - window.innerHeight;
+  const newScroll = Math.min(maxScroll, currentScroll + scrollStep);
+  window.scrollTo({ top: newScroll, behavior: "smooth" });
 });

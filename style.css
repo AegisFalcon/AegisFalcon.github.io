@@ -497,6 +497,36 @@ html.direct-lightbox body {
   overflow: hidden;
 }
 
+.scroll-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+  will-change: transform;
+  user-select: none;         /* évite la sélection de texte */
+  -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+  outline: none;
+}
+
+.scroll-buttons button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #222;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.scroll-buttons button:hover {
+  opacity: 1;
+}
+
 /* Mobile Responsive */
 
   @media (max-width: 768px) {
