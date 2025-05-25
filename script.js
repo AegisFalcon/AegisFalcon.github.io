@@ -41,10 +41,14 @@ document.querySelectorAll('a > img.lazy').forEach((img, index) => {
   const link = img.closest('a');
   if (!link) return;
 
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    openLightboxByIndex(index, true);
-  });
+  // Vérifie que le lien cible bien une lightbox
+  const target = link.getAttribute('href');
+  if (target && target.startsWith('#')) {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      openLightboxByIndex(index, true);
+    });
+  }
 });
 
 // --------- BOUTONS PREV / NEXT / CLOSE DANS LIGHTBOX ----------
