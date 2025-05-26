@@ -212,7 +212,12 @@ body::-webkit-scrollbar-thumb {
   .social-links img {
     width: 30px;
     height: 30px;
-    margin-right: 8px;
+    margin: 4px;
+    margin-top: 0;
+    margin-bottom: 0;
+    user-select: none;         /* évite la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+    outline: none;
   }
 
 footer {
@@ -467,6 +472,46 @@ padding: 1px;
 .about-text p {
   font-size: 1.2rem;
   line-height: 1.6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.patch-notes {
+  max-width: 450px;
+  padding-top: 30px;
+  margin: 0 auto;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.patch {
+  position: relative;
+  text-align: center; /* texte aligné à gauche */
+}
+
+.patch-date {
+  font-weight: bold;
+  color: #ffffff;
+  display: inline-block;
+  border: 1px solid white;
+  padding: 4px 10px;
+  border-radius: 4px; /* arrondi facultatif */
+  color: white; /* ou autre couleur selon ton fond */
+  background: transparent; /* ou un fond foncé si besoin */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.patch-content {
+  list-style-type: none;
+  padding-left: 0;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.patch-content li::before {
+  content: "• ";
+  color: #ffffff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
