@@ -210,6 +210,9 @@ body::-webkit-scrollbar-thumb {
     color: white;
     text-decoration: none;
     font-size: 1rem;
+    user-select: none;         /* évite la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+    outline: none;
   }
   
   .social-links img {
@@ -218,6 +221,9 @@ body::-webkit-scrollbar-thumb {
     margin: 4px;
     margin-top: 0;
     margin-bottom: 0;
+    user-select: none;         /* évite la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+    outline: none;
   }
 
 footer {
