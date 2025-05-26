@@ -199,6 +199,9 @@ body::-webkit-scrollbar-thumb {
     gap: 5px;
     flex-wrap: wrap;
     padding-top: 20px;
+    user-select: none;         /* évite la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+    outline: none;
   }
   
   .social-links a {
@@ -215,9 +218,6 @@ body::-webkit-scrollbar-thumb {
     margin: 4px;
     margin-top: 0;
     margin-bottom: 0;
-    user-select: none;         /* évite la sélection de texte */
-    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
-    outline: none;
   }
 
 footer {
