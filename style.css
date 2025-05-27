@@ -6,6 +6,9 @@
 nav {
   padding-top: 20px;
   padding-bottom: 10px;
+  user-select: none;         /* évite la sélection de texte */
+  -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+  outline: none;
   }
 
 body {
@@ -24,6 +27,9 @@ nav ul {
     padding: 0;            /* Supprime le padding par défaut */
     margin: 0;             /* Supprime le margin par défaut */
     gap: 30px;             /* Espace entre les liens (optionnel) */
+    user-select: none;         /* évite la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+    outline: none;
 }
 
 nav li a {
@@ -265,6 +271,9 @@ footer {
   transition: transform 0.3s ease;
   cursor: pointer;
   will-change: transform;
+  user-select: none;         /* évite la sélection de texte */
+  -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+  outline: none;
 }
 
 .game-card img:hover {
@@ -326,6 +335,9 @@ padding-top: 15px;
     transition: transform 0.3s ease;
     cursor: pointer;
     will-change: transform;
+    user-select: none;         /* évite la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+    outline: none;
 }
 
 .screenshot img:hover {
