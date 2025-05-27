@@ -34,6 +34,9 @@ nav li a {
     font-weight: 500;
     font-size: 1.25rem;
     letter-spacing: 0.125rem;
+    user-select: none;         /* évite la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+    outline: none;
 }
 
 header {
@@ -53,6 +56,9 @@ a {
     padding: 10px;
     max-width: 2800px;
     margin: auto;
+    user-select: none;         /* évite la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+    outline: none;
 }
 
 /* Effet au survol */
@@ -246,6 +252,9 @@ footer {
   padding: 20px;
   max-width: 1500px;  /* limite à ~4 ou 5 images par ligne */
   margin: 0 auto;     /* centre le conteneur */
+  user-select: none;         /* évite la sélection de texte */
+  -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+  outline: none;
 }
 
 .game-card img {
@@ -283,6 +292,9 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 20px;
     max-width: 2800px;
     margin: auto;
+    user-select: none;         /* évite la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+    outline: none;
 }
 
 .ig-screenshots-title-main {
