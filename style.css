@@ -27,9 +27,6 @@ nav ul {
     padding: 0;            /* Supprime le padding par défaut */
     margin: 0;             /* Supprime le margin par défaut */
     gap: 30px;             /* Espace entre les liens (optionnel) */
-    user-select: none;         /* évite la sélection de texte */
-    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
-    outline: none;
 }
 
 nav li a {
