@@ -201,7 +201,14 @@ document.querySelectorAll('.lightbox .close').forEach(btn => {
     history.replaceState(null, '', window.location.pathname + window.location.search);
 
     document.documentElement.classList.remove('direct-lightbox');
-    document.querySelector('.gallery').style.display = 'flex';
+
+    // Gérer la galerie ou la section screenshot selon la page
+    const gallery = document.querySelector('.gallery');
+    const screenshot = document.querySelector('.screenshot');
+
+    if (gallery) gallery.style.display = 'flex';
+    if (screenshot) screenshot.style.display = 'flex';
+
     document.body.style.overflow = '';
     closeLightbox();
   });
