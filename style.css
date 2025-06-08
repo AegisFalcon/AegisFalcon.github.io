@@ -611,6 +611,13 @@ html.direct-lightbox body {
   }
 }
 
+@media (max-width: 1600px) and (max-height: 900px) {
+    .gallery img {
+        width: 250px; /* réduit légèrement la taille pour s’adapter à l’espace disponible */
+        height: 250px;
+    }
+}
+
 /* Mobile Responsive */
 
   @media (max-width: 768px) {
