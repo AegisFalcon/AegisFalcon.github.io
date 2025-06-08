@@ -294,7 +294,8 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    column-gap: 20px;
+    row-gap: 15px;
     padding: 20px;
     max-width: 2800px;
     margin: auto;
@@ -600,6 +601,14 @@ html.direct-lightbox body {
 
 .scroll-buttons button:hover {
   opacity: 1;
+}
+
+/* 1080P */
+@media screen and (width: 1920px) and (height: 1080px) {
+  .screenshot img {
+   width: 445px;
+   height: 251px;
+  }
 }
 
 /* Mobile Responsive */
