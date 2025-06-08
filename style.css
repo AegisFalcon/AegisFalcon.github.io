@@ -613,8 +613,8 @@ html.direct-lightbox body {
 
 @media (max-width: 1600px) and (max-height: 900px) {
     .gallery img {
-        width: 280px; /* réduit légèrement la taille pour s’adapter à l’espace disponible */
-        height: 280px;
+        width: 400px; /* réduit légèrement la taille pour s’adapter à l’espace disponible */
+        height: 400px;
     }
 }
 
