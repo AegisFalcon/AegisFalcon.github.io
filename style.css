@@ -664,7 +664,7 @@ html.direct-lightbox body {
 }
 
 /* Gamelist vertical */
-@media screen and (max-width: 768px), (orientation: portrait) {
+@media (max-width: 768px) {
 .tier-list {
   display: flex;
   justify-content: start;
@@ -683,13 +683,39 @@ width: 100%;
 .tier-board {
   justify-content: start;
   width: 1543px;
-  /* Pas de min-width forcé */
 }
 
 .scroll-wrapper.active {
   cursor: grabbing;
+ }
 }
+
+@media (min-width: 768px) and (max-width: 1900px) {
+.tier-list {
+  display: flex;
+  justify-content: start;
+  overflow-x: auto;
+  }
+
+.scroll-wrapper {
+cursor: grab;
+justify-content: start;
+user-select: none;
+overflow-x: auto;
+width: 100%;
+-webkit-overflow-scrolling: touch; /* pour fluidité mobile */
 }
+
+.tier-board {
+  justify-content: start;
+  width: 1543px;
+}
+
+.scroll-wrapper.active {
+  cursor: grabbing;
+ }
+}
+
 
 /* 1080P */
 @media screen and (width: 1920px) and (height: 1080px) {
