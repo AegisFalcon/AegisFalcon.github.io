@@ -25,7 +25,10 @@
 
         <main>
             <section class="tier-list">
-                <h2>Tier S (Masterpiece)</h2>
+              <div class="scroll-wrapper">
+              <div class="tier-board">
+              <div class="tier-column">
+                <h2 id="tier-s">Masterpiece</h2>
                 <ul class="tier">
                   <li>
                     <span class="game-title">Alien Isolation</span>
@@ -57,16 +60,29 @@
                     <span class="game-title">Hunt Showdown</span>
                   <div class="steam-preview">
                     <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/594650/header.jpg?t=1746432020" alt="Steam Preview" class="lazy" loading="lazy">
-                    <p class="game-comment">An extraction shooter made by Crytek that mixes Western, Bayou, Zombies and Monsters that works too damn well, the atmosphere 
-                    is extremely well crafted and heavy, right down to the little noises that can betray you.</p>
+                    <p class="game-comment">An extraction shooter made by Crytek that mixes Wild West, Bayou, Zombies and Monsters that works too damn well, the atmosphere 
+                    is extremely well crafted and oppressive, right down to the little noises that can betray you.</p>
                     <p class="game-comment">Play it in the dark, preferably with a headset, it's an online game but it's really worth it, the 
                     Art Direction is exceptional and unique.</p>
                     <a class="store-button" href="https://store.steampowered.com/app/594650/Hunt_Showdown_1896/" target="_blank"><strong>VIEW IN STORE</strong></a>
                     </div>
                   </li>
-                </ul>
 
-                <h2>Tier A (A Memorable Experience)</h2>
+                  <li>
+                    <span class="game-title">Project Zomboid</span>
+                  <div class="steam-preview">
+                    <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/108600/header.jpg?t=1739309087" alt="Steam Preview" class="lazy" loading="lazy">
+                    <p class="game-comment">Simply the Best Zombie game ever made, there's no debate.</p>
+                    <p class="game-comment">Don't be fooled by its old-school look, I say with full confidence that this is the most realistic game of its genre.</p>
+                    <p class="game-comment">A Masterpiece not in its visuals, but in its mechanics and overall atmosphere.</p>
+                    <a class="store-button" href="https://store.steampowered.com/app/108600/Project_Zomboid/" target="_blank"><strong>VIEW IN STORE</strong></a>
+                    </div>
+                  </li>
+                </ul>
+                </div>
+                 
+                <div class="tier-column">
+                <h2 id="tier-a">A Memorable Experience</h2>
                 <ul class="tier">
                   <li>
                     <span class="game-title">Stray</span>
@@ -77,9 +93,20 @@
                     <a class="store-button" href="https://store.steampowered.com/app/1332010/Stray/" target="_blank"><strong>VIEW IN STORE</strong></a>
                    </div>
                   </li>
-                </ul>
 
-                <h2>Tier B (A Great Journey)</h2>
+                  <li>
+                    <span class="game-title">Detroit : Become Human</span>
+                    <div class="steam-preview">
+                    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1222140/header.jpg?t=1667468479" alt="Steam Preview" class="lazy" loading="lazy">
+                    <p class="game-comment">Would you be open to considering androids as beings with equal rights if they became as similar and more human than humans ?</p>
+                    <a class="store-button" href="https://store.steampowered.com/app/1222140/Detroit_Become_Human/" target="_blank"><strong>VIEW IN STORE</strong></a>
+                   </div>
+                  </li>
+                </ul>
+                </div>
+                
+                <div class="tier-column">
+                <h2 id="tier-b">A Great Journey</h2>
                 <ul class="tier">
                   <li>
                     <span class="game-title">The Invincible</span>
@@ -87,13 +114,25 @@
                     <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/731040/header.jpg?t=1745409303" alt="Steam Preview" class="lazy" loading="lazy">
                     <p class="game-comment">Based on the novel by Stanisław Lem, it takes place on an unknown planet with Soviet-style equipment.</p>
                     <p class="game-comment">Captivating game, unique Art Direction. I had a great time on this walking simulator, 
-                      living the story of a cosmonaut who finds herself lost in a mystery on an unknown planet, hunted by an anomaly of unknown origin.</p>
+                      living the story of a scientist cosmonaut who finds herself lost in a mystery on an unknown planet, hunted by an anomaly of unknown origin.</p>
                     <a class="store-button" href="https://store.steampowered.com/app/731040/The_Invincible/" target="_blank"><strong>VIEW IN STORE</strong></a>
                     </div>
                   </li>
-                </ul>
 
-                <h2>Tier C (Worth The Time)</h2>
+                  <li>
+                    <span class="game-title">The Callisto Protocol</span>
+                    <div class="steam-preview">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1544020/header.jpg?t=1726806420" alt="Steam Preview" class="lazy" loading="lazy">
+                    <p class="game-comment">Taking inspiration from several other notable pieces of science fiction, it still found a place in my heart. It's a very well developed game, and the narrative is immersive.</p>
+                    <p class="game-comment">The journey was really great.</p>
+                    <a class="store-button" href="https://store.steampowered.com/app/1544020/The_Callisto_Protocol/" target="_blank"><strong>VIEW IN STORE</strong></a>
+                    </div>
+                  </li>
+                </ul>
+                </div>
+
+                <div class="tier-column">
+                <h2 id="tier-c">Worth The Time</h2>
                 <ul class="tier">
                   <li>
                     <span class="game-title">The Finals</span>
@@ -105,8 +144,10 @@
                     </div>
                   </li>
                 </ul>
-              
-                <!-- Ajoute autant de niveaux que tu veux -->
+                </div>
+                 </div>
+                  </div>
+
               </section>
         </main>
 
@@ -129,5 +170,37 @@
         <p>&copy; 2025 - Luke Aegis.</p>
     </footer>
     <script src="./script.js"></script>
+
+    <script>
+  const slider = document.querySelector('.scroll-wrapper');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener('mousedown', (e) => {
+  isDown = true;
+  slider.classList.add('active');
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+});
+
+slider.addEventListener('mouseleave', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+
+slider.addEventListener('mouseup', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+
+slider.addEventListener('mousemove', (e) => {
+  if(!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 2; // vitesse de défilement
+  slider.scrollLeft = scrollLeft - walk;
+});
+   </script>
 </body>
 </html>

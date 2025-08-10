@@ -4,7 +4,7 @@
 }
 
 nav {
-  padding-top: 20px;
+  padding-top: 30px;
   padding-bottom: 10px;
   user-select: none;         /* évite la sélection de texte */
   -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
@@ -13,6 +13,8 @@ nav {
 
 body {
   background-color: rgb(0, 0, 0);
+  margin: 0;
+  padding: 0;
   }
 
 h1 {
@@ -381,31 +383,33 @@ padding-top: 15px;
 /* GAME LIST */
 
 .tier-list {
-  padding: 1px;
-  max-width: 800px;
-  margin: auto;
-  color: white;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  padding: 20px 0;
 }
 
 .tier-list h2 {
   border-bottom: 4px solid white;
   margin-top: 1px;
+  padding-bottom: 15px;
   font-size: 1.9rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
 }
 
 .tier {
   list-style: none;
   padding-left: 0;
-  margin: 15px 0;
+  margin: 0;
 }
 
 .tier li {
-  margin-bottom: 0px;
+  margin-bottom: 15px;
   padding: 10px;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
-  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid white;
+  background: rgb(22, 22, 22);
+  border-radius: 8px;
   text-align: center;
 }
 
@@ -413,6 +417,7 @@ padding-top: 15px;
   font-weight: bold;
   font-size: 1.8rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
 }
 
 .game-comment {
@@ -429,6 +434,31 @@ padding-top: 15px;
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1.5rem;
+}
+
+.tier-board {
+  display: flex;
+  justify-content: center; /* centre les colonnes */
+  gap: 20px;
+  min-width: fit-content;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.tier-column {
+  flex: 0 0 350px; /* largeur fixe de chaque colonne */
+  background: rgba(255, 255, 255, 0.07);
+  padding: 10px;
+  padding-bottom: 0px;
+  border-radius: 10px;
+  white-space: normal;
+}
+
+.tier-column h2 {
+  border-bottom: 4px solid white;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .Header-Gamelist {
@@ -603,8 +633,67 @@ html.direct-lightbox body {
   opacity: 1;
 }
 
+/* Filters buttons */
+
+#filters {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem 1rem;
+  background: rgba(0, 0, 0, 0.6); /* optionnel : pour lisibilité */
+  border-radius: 10px;           /* optionnel : pour style */
+  z-index: 1000;                 /* pour s'assurer que c'est au-dessus du contenu */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.filter-btn {
+  padding: 8px 12px;
+  cursor: pointer;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+.filter-btn.active {
+  background: #707070;
+}
+
+/* Gamelist vertical */
+@media screen and (max-width: 768px), (orientation: portrait) {
+.tier-list {
+  display: flex;
+  justify-content: start;
+  overflow-x: auto;
+  }
+
+.scroll-wrapper {
+cursor: grab;
+justify-content: start;
+user-select: none;
+overflow-x: auto;
+width: 100%;
+-webkit-overflow-scrolling: touch; /* pour fluidité mobile */
+}
+
+.tier-board {
+  justify-content: start;
+  display: flex;
+  gap: 20px;
+  /* Pas de min-width forcé */
+}
+
+.scroll-wrapper.active {
+  cursor: grabbing;
+}
+}
+
 /* 1080P */
-@media screen and (min-width: 1200px) and (max-width: 1920px) {
+@media screen and (width: 1920px) and (height: 1080px) {
   .screenshot img {
    width: 445px;
    height: 251px;
@@ -617,6 +706,14 @@ html.direct-lightbox body {
     width: 200px;
     height: 200px;
   }
+}
+
+/* 1440P vertical */
+@media screen and (max-width: 1440px) and (orientation: portrait) {
+    .screenshot img {
+      width: 432px;
+      height: 243px;
+    }
 }
 
 /* Mobile Responsive */
@@ -701,4 +798,36 @@ html.direct-lightbox body {
     gap: 10px;
   }
 }
+
+.social-links-about {
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+    padding-top: 10px;
+    user-select: none;         /* évite la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+    outline: none;
+  }
+  
+  .social-links-about a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    user-select: none;         /* évite la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+    outline: none;
+  }
+  
+  .social-links-about img {
+    width: 30px;
+    height: 30px;
+    margin: 4px;
+    margin-top: 0;
+    margin-bottom: 0;
+    user-select: none;         /* évite la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* retire l'effet bleu sur mobile */
+    outline: none;
+  }
 
