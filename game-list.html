@@ -198,7 +198,7 @@ slider.addEventListener('mousemove', (e) => {
   if(!isDown) return;
   e.preventDefault();
   const x = e.pageX - slider.offsetLeft;
-  const walk = (x - startX) * 2; // vitesse de défilement
+  const walk = (x - startX) * 0.5; // vitesse de défilement
   slider.scrollLeft = scrollLeft - walk;
 });
    </script>

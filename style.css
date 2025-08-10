@@ -682,8 +682,7 @@ width: 100%;
 
 .tier-board {
   justify-content: start;
-  display: flex;
-  gap: 20px;
+  width: 1543px;
   /* Pas de min-width forcé */
 }
 
