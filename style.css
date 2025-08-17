@@ -775,8 +775,8 @@ width: 100%;
 /* Tablette & petits laptops */
 @media (min-width: 768px) and (max-width: 1279px) {
   .gallery img {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
   }
 }
 
@@ -869,6 +869,17 @@ width: 100%;
     padding: 10px;
     gap: 10px;
   }
+
+
+/* Le titre en overlay */
+.gallery-item .title {
+  display: none;
+}
+
+.gallery img:hover {
+    transform: none;
+}
+
 }
 
 .social-links-about {
