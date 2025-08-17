@@ -89,6 +89,8 @@ a {
 .gallery-item {
   position: relative;        /* pour positionner le titre par-dessus */
   display: inline-block;
+  text-decoration: none; /* pas de soulignement */
+  color: inherit;        /* pas de couleur violette */
 }
 
 /* Le titre en overlay */
