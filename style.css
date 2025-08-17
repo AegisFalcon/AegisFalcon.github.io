@@ -1,9 +1,15 @@
 @font-face {
     font-family: "Orbitron";
-    src: url(./assets/fonts/Orbitron-Regular.ttf);
+    src: url("./assets/fonts/Orbitron-Regular.ttf");
 
+}
+
+@font-face {
     font-family: "Bebas";
-    src: url(./assets/fonts/BebasNeue-Regular.ttf);
+    src: url("./assets/fonts/BebasNeue-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 nav {
@@ -106,7 +112,8 @@ a {
   font-size: 1.8rem;
   font-family: "Bebas", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
-  font-weight: 700;
+  letter-spacing: 0.08rem;
+  font-weight: 400;
   color: #fff;
   background: linear-gradient(to top, rgba(0,0,0,.62) 35%, transparent 90%);
   opacity: 0;
