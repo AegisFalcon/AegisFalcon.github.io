@@ -2,17 +2,29 @@
 const lightboxes = [...document.querySelectorAll('.lightbox')];
 let currentIndex = 0;
 
-// --------- AFFICHAGE / MASQUAGE DES BOUTONS SCROLL ----------
+// --------- AFFICHAGE / MASQUAGE DES BOUTONS SCROLL et Filtrage  ----------
 function openLightbox() {
   document.querySelector('.lightbox')?.classList.add('show');
+
+  // Masquer les boutons de scroll
   const scrollBtns = document.querySelector('.scroll-buttons');
   if (scrollBtns) scrollBtns.style.display = 'none';
+
+  // Masquer les boutons de filtre
+  const filterBtns = document.querySelector('.filter-buttons');
+  if (filterBtns) filterBtns.style.display = 'none';
 }
 
 function closeLightbox() {
   document.querySelector('.lightbox')?.classList.remove('show');
+
+  // Réafficher les boutons de scroll
   const scrollBtns = document.querySelector('.scroll-buttons');
   if (scrollBtns) scrollBtns.style.display = 'flex';
+
+  // Réafficher les boutons de filtre
+  const filterBtns = document.querySelector('.filter-buttons');
+  if (filterBtns) filterBtns.style.display = 'flex';
 }
 
 // --------- OUVRIR LIGHTBOX ----------
@@ -214,13 +226,21 @@ document.querySelectorAll('.lightbox .close').forEach(btn => {
   });
 });
 
+// Récupère l'année actuelle
+  document.addEventListener("DOMContentLoaded", function() {
+  const yearSpan = document.getElementById("year");
+  if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear();
+  }
+});
+
 // --------- BOUTONS SCROLL HAUT/BAS ----------
 const scrollStep = 500; // nombre de pixels à scroller par clic
 
 document.getElementById("scroll-up").addEventListener("click", function () {
   const currentScroll = window.scrollY || window.pageYOffset;
   const newScroll = Math.max(0, currentScroll - scrollStep);
-  window.scrollTo({ top: newScroll, behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 document.getElementById("scroll-down").addEventListener("click", function () {
